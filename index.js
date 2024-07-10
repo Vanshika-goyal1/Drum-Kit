@@ -8,12 +8,14 @@ document.querySelectorAll(".drum")[i].addEventListener("click", function() {
     
     var buttonInnerHtml = this.innerHTML;
     makeSound(buttonInnerHtml);
+    buttonAnimation(buttonInnerHtml);
     //What to do when Click is detected.
 });
 }
 
 document.addEventListener("keypress",function(event){
-    makeSound(event.key);     // Which keyboard key is pressed.
+    makeSound(event.key);   // Which keyboard key is pressed.
+    buttonAnimation(event.key);
 });
 
 
@@ -59,3 +61,15 @@ function makeSound(key) {
         default: console.log(buttonInnerHtml);
     }
 }
+
+function buttonAnimation(currentKey) {
+    
+    var activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(function() {
+        activeButton.classList.remove("pressed");
+    },100);
+
+} 
